@@ -1,0 +1,56 @@
+<!-- Voting Page (vote.ejs) -->
+<section class="candidates">
+  <h2>Vote for Your Candidate</h2>
+  <form id="voteForm">
+    <div class="candidate-container">
+      <% candidates.forEach(candidate => { %>
+      <div class="candidate" data-id="<%= candidate._id %>">
+        <img
+          src="<%= candidate.picture %>"
+          alt="<%= candidate.name %>"
+          class="candidate-pic"
+        />
+        <h3><%= candidate.name %></h3>
+        <p>Party: <%= candidate.politicalParty %></p>
+        <!-- <p>Manifesto: <%= candidate.manifesto %></p> -->
+      </div>
+      <% }) %>
+    </div>
+    <input type="hidden" name="candidateId" id="candidateId" required />
+    <button type="button" id="voteBtn">Submit Vote</button>
+  </form>
+</section>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const candidates = document.querySelectorAll(".candidate");
+    const candidateIdInput = document.getElementById("candidateId");
+
+    candidates.forEach((candidate) => {
+      candidate.addEventListener("click", () => {
+        // Remove selection from all cards
+        candidates.forEach((c) => c.classList.remove("selected"));
+
+        // Highlight the clicked card
+        candidate.classList.add("selected");
+
+        // Set the hidden input value
+        candidateIdInput.value = candidate.dataset.id;
+      });
+    });
+
+    document.getElementById("voteBtn").addEventListener("click", async () => {
+      const candidateId = candidateIdInput.value;
+      if (!candidateId) {
+        alert("Please select a candidate before submitting your vote.");
+        return;
+      }
+      try {
+        const response = await axios.post("/vote", { candidateId });
+        alert("Vote submitted successfully!");
+        window.location.href = "/login";
+      } catch (error) {
+        alert("Error during voting: " + error.response.data);
+      }
+    });
+  });
+</script>

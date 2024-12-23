@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 min-h-screen p-6">
+    <header
+      class="bg-indigo-600 text-white p-4 rounded-md shadow-md flex justify-between items-center"
+    >
+      <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+      <form action="/admin/logout" method="POST">
+        <button
+          type="submit"
+          class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition"
+        >
+          Logout
+        </button>
+      </form>
+    </header>
+
+    <main class="bg-white rounded-lg shadow-md p-6 overflow-x-auto mt-6">
+      <table class="w-full border-collapse border border-gray-200">
+        <thead>
+          <tr>
+            <th class="border border-gray-300 px-4 py-2">Candidate Name</th>
+            <th class="border border-gray-300 px-4 py-2">Political Party</th>
+            <th class="border border-gray-300 px-4 py-2">Votes Received</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% candidates.forEach(candidate => { %>
+          <tr class="hover:bg-gray-100">
+            <td class="border border-gray-300 px-4 py-2">
+              <%= candidate.name %>
+            </td>
+            <td class="border border-gray-300 px-4 py-2">
+              <%= candidate.politicalParty %>
+            </td>
+            <td class="border border-gray-300 px-4 py-2">
+              <%= candidate.votes %>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </main>
+
+    <footer class="text-center mt-4">
+      <button
+        onclick="location.reload()"
+        class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+      >
+        Refresh Data
+      </button>
+    </footer>
+  </body>
+</html>

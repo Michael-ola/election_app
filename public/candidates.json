@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Tinubu Asiwaju",
+    "politicalParty": "APC",
+    "manifesto": "",
+    "picture": "/images/candidate_1.png"
+  },
+  {
+    "name": "Peter Obi",
+    "politicalParty": "LP",
+    "manifesto": "",
+    "picture": "/images/candidate_2.png"
+  },
+  {
+    "name": "Atiku Abubakar",
+    "politicalParty": "PDP",
+    "manifesto": "",
+    "picture": "/images/candidate_3.png"
+  }
+]

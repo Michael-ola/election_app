@@ -1,0 +1,342 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f9;
+  color: #333;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: #0056b3;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+header nav ul li {
+  margin: 0 10px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header nav ul li a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #0056b3;
+  color: white;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #e3f2fd;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+/* Form Styles */
+.form-container {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="date"],
+form input[type="file"],
+form button {
+  width: 97%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+form button {
+  background-color: #0056b3;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #003f88;
+}
+
+/* Candidates Section */
+.candidates {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px auto;
+  max-width: 900px;
+}
+
+.candidate {
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  flex: 1 1 calc(33.333% - 20px);
+  box-sizing: border-box;
+}
+
+.candidate img.candidate-pic {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.candidate h3 {
+  margin: 10px 0;
+}
+
+.candidate p {
+  margin: 5px 0;
+}
+
+/* Admin Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+table th {
+  background-color: #0056b3;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f4f4f9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .candidates {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .candidate {
+    flex: 1 1 100%;
+  }
+
+  .form-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header nav ul {
+    flex-direction: column;
+  }
+
+  header nav ul li {
+    margin: 5px 0;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
+.cta-button {
+  display: inline-block;
+  width: 45%;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white; /* Text color */
+  background-color: #3498db; /* Primary button color */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  text-align: center;
+  text-decoration: none; /* Removes underline from text if it's a link */
+  transition: all 0.3s ease-in-out; /* Smooth transition on hover */
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.cta-button:hover {
+  background-color: #2980b9; /* Slightly darker shade on hover */
+  transform: translateY(-3px); /* Button rises slightly for a hover effect */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.cta-button:active {
+  background-color: #1a609d; /* Even darker shade for "active" state */
+  transform: translateY(1px); /* Button moves down slightly when clicked */
+}
+
+.cta-button:focus {
+  outline: none; /* Removes the default focus outline */
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.5); /* Focus state with blue shadow */
+}
+
+.candidates {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.candidates h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Candidate Container */
+.candidate-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Candidate Card */
+.candidate {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  text-align: center;
+}
+
+.candidate:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.candidate.selected {
+  border: 2px solid #4caf50; /* Highlight color */
+  box-shadow: 0px 0px 10px #4caf50;
+}
+
+/* Candidate Picture */
+.candidate-pic {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+/* Candidate Name */
+.candidate h3 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+/* Candidate Details */
+.candidate p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Submit Button */
+#voteBtn {
+  display: block;
+  margin: 20px auto;
+  padding: 15px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#voteBtn:hover {
+  background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .candidates h2 {
+    font-size: 1.5rem;
+  }
+
+  .candidate-container {
+    grid-template-columns: 1fr;
+  }
+
+  .candidate h3 {
+    font-size: 1.2rem;
+  }
+
+  .candidate p {
+    font-size: 0.9rem;
+  }
+
+  #voteBtn {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+}

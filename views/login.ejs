@@ -1,0 +1,25 @@
+<!-- Login Page (login.ejs) -->
+<section class="form-container" style="margin-top: 8%">
+  <h2>Login</h2>
+  <form id="loginForm">
+    <label for="voterId">Voter ID:</label>
+    <input type="text" name="voterId" id="voterId" required />
+
+    <label for="dateOfBirth">Date of Birth:</label>
+    <input type="date" name="dateOfBirth" id="dateOfBirth" required />
+
+    <button type="button" id="loginBtn">Login</button>
+  </form>
+</section>
+<script>
+  document.getElementById("loginBtn").addEventListener("click", async () => {
+    const form = document.getElementById("loginForm");
+    const formData = new FormData(form);
+    try {
+      const response = await axios.post("/login", Object.fromEntries(formData));
+      window.location.href = "/vote";
+    } catch (error) {
+      alert("Login failed: " + error.response.data);
+    }
+  });
+</script>

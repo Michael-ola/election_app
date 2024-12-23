@@ -1,0 +1,37 @@
+<!-- Registration Page (register.ejs) -->
+<section class="form-container">
+  <h2>Voter Registration</h2>
+  <form id="registrationForm" enctype="multipart/form-data">
+    <label for="firstName">First Name:</label>
+    <input type="text" name="firstName" id="firstName" required />
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" name="lastName" id="lastName" required />
+
+    <label for="voterId">Voter ID:</label>
+    <input type="text" name="voterId" id="voterId" required />
+
+    <label for="dateOfBirth">Date of Birth:</label>
+    <input type="date" name="dateOfBirth" id="dateOfBirth" required />
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required />
+
+    <label for="excelFile">Upload Excel File:</label>
+    <input type="file" name="excelFile" id="excelFile" />
+
+    <button type="button" id="registerBtn">Register</button>
+  </form>
+</section>
+<script>
+  document.getElementById("registerBtn").addEventListener("click", async () => {
+    const form = document.getElementById("registrationForm");
+    const formData = new FormData(form);
+    try {
+      const response = await axios.post("/register", formData);
+      window.location.href = "/login";
+    } catch (error) {
+      alert("Error during registration: " + error.response.data);
+    }
+  });
+</script>
