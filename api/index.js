@@ -77,7 +77,9 @@ const Candidate =
   mongoose.models.Candidate || mongoose.model("Candidate", candidateSchema);
 
 // File upload configuration
-const upload = multer({ dest: "uploads/" });
+//const upload = multer({ dest: "uploads/" });
+// Use the /tmp directory for temporary file storage on Vercel
+const upload = multer({ dest: "/tmp/uploads/" });
 
 // Mailing setup
 const transporter = nodemailer.createTransport({
