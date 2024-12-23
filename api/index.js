@@ -10,10 +10,10 @@ const MongoStore = require("connect-mongo");
 const path = require("path");
 const bodyparser = require("body-parser");
 const ejsLayouts = require("express-ejs-layouts");
+require("dotenv").config();
 const app = express();
-//candidates = require("../public/candidates.json");
-mongoURL =
-  "mongodb+srv://learningtechnigeria:electionWebsite@cluster0.hyloz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+const mongoURL = process.env.MONGODB_URL;
 
 // Middleware setup
 app.use(ejsLayouts);
@@ -85,8 +85,8 @@ const upload = multer({ dest: "/tmp/uploads/" });
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "michael303.mi@gmail.com", // Replace with your email
-    pass: "ndan xtdv ozaz bank", // Replace with your password
+    user: process.env.EMAIL, // Replace with your email
+    pass: process.env.EMAIL_PASS, // Replace with your password
   },
 });
 
@@ -121,7 +121,7 @@ app.post("/register", upload.single("excelFile"), async (req, res) => {
       await voter.save();
       // Send confirmation email
       await transporter.sendMail({
-        from: "michael303.mi@gmail.com",
+        from: process.env.EMAIL,
         to: req.body.email,
         subject: "Voter Registration Confirmation",
         text: "You have successfully registered to vote!",
@@ -188,7 +188,7 @@ app.post("/admin/register", async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Validate the access key
-  if (accessKey !== "090217") {
+  if (accessKey !== process.env.ADMIN_ACCESS_KEY) {
     return res.status(403).send("Invalid Access Key. Registration denied.");
   }
 
@@ -241,8 +241,8 @@ app.get("/admin", async (req, res) => {
 });
 
 // Start server
-//app.listen(3000, function () {
-app.listen(process.env.PORT, () => {
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
   console.log("Server is running");
 });
 
