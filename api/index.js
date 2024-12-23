@@ -15,6 +15,7 @@ const app = express();
 // Middleware setup
 app.use(ejsLayouts);
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 app.set("layout", "layouts/main");
 app.use((req, res, next) => {
   if (req.path === "/admin") {
