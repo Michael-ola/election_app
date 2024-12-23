@@ -6,6 +6,7 @@ const xlsx = require("xlsx");
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const path = require("path");
 const bodyparser = require("body-parser");
 const ejsLayouts = require("express-ejs-layouts");
@@ -41,7 +42,10 @@ app.use(
 );
 
 // Database connection
-mongoose.connect(mongoURL);
+mongoose
+  .connect(mongoURL)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.error("MongoDB Connection Error:", err));
 
 const voterSchema = new mongoose.Schema({
   firstName: String,
