@@ -80,8 +80,8 @@ const upload = multer({ dest: "uploads/" });
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL, // Replace with your email
-    pass: process.env.EMAIL_PASS, // Replace with your password
+    user: "michael303.mi@gmail.com", // Replace with your email
+    pass: "ndan xtdv ozaz bank", // Replace with your password
   },
 });
 
@@ -116,7 +116,7 @@ app.post("/register", upload.single("excelFile"), async (req, res) => {
       await voter.save();
       // Send confirmation email
       await transporter.sendMail({
-        from: process.env.EMAIL,
+        from: "michael303.mi@gmail.com",
         to: req.body.email,
         subject: "Voter Registration Confirmation",
         text: "You have successfully registered to vote!",
@@ -183,7 +183,7 @@ app.post("/admin/register", async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Validate the access key
-  if (accessKey !== process.env.ADMIN_ACCESS_KEY) {
+  if (accessKey !== "090217") {
     return res.status(403).send("Invalid Access Key. Registration denied.");
   }
 
