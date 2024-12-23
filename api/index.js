@@ -11,11 +11,13 @@ const bodyparser = require("body-parser");
 const ejsLayouts = require("express-ejs-layouts");
 const app = express();
 //candidates = require("../public/candidates.json");
+mongoURL =
+  "mongodb+srv://learningtechnigeria:electionWebsite@cluster0.hyloz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Middleware setup
 app.use(ejsLayouts);
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "../views"));
 app.set("layout", "layouts/main");
 app.use((req, res, next) => {
   if (req.path === "/admin") {
@@ -34,17 +36,12 @@ app.use(
     secret: "secureElection",
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: mongoURL }),
   })
 );
 
 // Database connection
-mongoose.connect(
-  "mongodb+srv://learningtechnigeria:electionWebsite@cluster0.hyloz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect(mongoURL);
 
 const voterSchema = new mongoose.Schema({
   firstName: String,
@@ -70,9 +67,10 @@ const candidateSchema = new mongoose.Schema({
   votes: { type: Number, default: 0 },
 });
 
-const Voter = mongoose.model("Voter", voterSchema);
-const Admin = mongoose.model("Admin", AdminSchema);
-const Candidate = mongoose.model("Candidate", candidateSchema);
+const Voter = mongoose.models.Voter || mongoose.model("Voter", voterSchema);
+const Admin = mongoose.models.Admin || mongoose.model("Admin", AdminSchema);
+const Candidate =
+  mongoose.models.Candidate || mongoose.model("Candidate", candidateSchema);
 
 // File upload configuration
 const upload = multer({ dest: "uploads/" });
