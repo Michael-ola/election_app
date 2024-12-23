@@ -237,7 +237,7 @@ app.get("/admin", async (req, res) => {
 
 // Start server
 //app.listen("0.0.0.0", function () {
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server is running");
 });
 
