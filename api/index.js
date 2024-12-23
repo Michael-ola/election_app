@@ -10,7 +10,7 @@ const path = require("path");
 const bodyparser = require("body-parser");
 const ejsLayouts = require("express-ejs-layouts");
 const app = express();
-candidates = require("./public/candidates.json");
+//candidates = require("../public/candidates.json");
 
 // Middleware setup
 app.use(ejsLayouts);
@@ -24,7 +24,7 @@ app.use((req, res, next) => {
   }
   next();
 });
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -236,7 +236,7 @@ app.get("/admin", async (req, res) => {
 });
 
 // Start server
-//app.listen("0.0.0.0", function () {
+//app.listen(3000, function () {
 app.listen(process.env.PORT, () => {
   console.log("Server is running");
 });
