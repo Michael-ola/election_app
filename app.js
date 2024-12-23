@@ -37,10 +37,13 @@ app.use(
 );
 
 // Database connection
-mongoose.connect(process.env.DB_STRING, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  "mongodb+srv://learningtechnigeria:electionWebsite@cluster0.hyloz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 const voterSchema = new mongoose.Schema({
   firstName: String,
@@ -233,8 +236,8 @@ app.get("/admin", async (req, res) => {
 });
 
 // Start server
-app.listen("0.0.0.0", function () {
-  //app.listen(3000, () => {
+//app.listen("0.0.0.0", function () {
+app.listen(3000, () => {
   console.log("Server is running");
 });
 
